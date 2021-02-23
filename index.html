@@ -1,36 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
     <title>Denis Alekseev | Developer</title>
     <style>
         body {
             font-family: 'Oswald', sans-serif;
             margin-top: 50px;
-}
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            height: 17px;
+            vertical-align: sub;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 13px;
+            width: 13px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(13px);
+            -ms-transform: translateX(13px);
+            transform: translateX(13px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
     </style>
 </head>
+
 <body class="text-center">
-        <div class="container">
-            <div class="row">
+    <div class="container">
+        <div class="row">
             <div class="col">
             </div>
             <div class="col">
+                <label>
+                    RUS
+                    <label class="switch">
+                        <input id="LangBox" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    ENG
+                </label>
                 <p>Telegram: <a href="https://telegram.me/fluup">@Fluup</a></p>
                 <p>E-mail: <a href="mailto:alekseevd1d@gmail.com">alekseevd1d@gmail.com</a></p>
                 <p>Freelance: <a href="https://www.upwork.com/freelancers/~0129d3255cd0cde246">Upwork</a></p>
             </div>
-            </div>
-         </div>
-    
-    <h4 >Здравствуйте!</h1>
-    <p>
-        Я Денис Алексеев, .net разработчик.
-    </p>
-    <p>Взгляните на моё резюме: <a href="fls/Resume.pdf">click</a></p>
+        </div>
+    </div>
+
+    <div id="rusSection" style="display: none;">
+        <h4>Здравствуйте!</h4>
+        <p>
+            Я Денис Алексеев, Full stack разработчик.
+        </p>
+        <p>Взгляните на моё резюме: <a href="fls/ResumeRus.pdf">click</a></p>
+    </div>
+
+    <div id="EngSection" style="display: block;">
+        <h4>Hi!</h4>
+        <p>
+            I am Denis Alekseev, Full stack developer.
+        </p>
+        <p>Check my resume: <a href="fls/ResumeEng.pdf">click</a></p>
+    </div>
+
+    <script>
+        document.getElementById("LangBox").onclick = changer;
+        if (window.navigator.language.includes("ru")) {
+            setEng(false);
+            document.getElementById("LangBox").checked = false;
+        }
+        function changer() {
+            setEng(document.getElementById("LangBox").checked);
+        }
+        function setEng(val) {
+            let rs, es;
+            if (val == true) {
+                rs = "none";
+                es = "block";
+            }
+            else {
+                rs = "block";
+                es = "none";
+            }
+            document.getElementById("rusSection").style.display = rs;
+            document.getElementById("EngSection").style.display = es;
+        }
+    </script>
 </body>
+
 </html>
